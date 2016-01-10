@@ -71,7 +71,7 @@ class controller {
 		 */
 		this.controllers.topX = this.gui.add(this.params, 'topX');
 		this.controllers.topX = this.controllers.topX.min(0).max(this.imageWidth).step(1).name('X position');
-		
+
 		this.controllers.topX.onChange((val) => {
 			this.events.trigger('change', this.params);
 		});
@@ -105,6 +105,15 @@ class controller {
 		this.controllers.invertText.onChange((val) => {
 			this.events.trigger('invertText', this.params);
 		});
+
+		/**
+		 * Randomize Button
+		 */
+		this.controllers.randomizeButton = this.gui.add({
+			"Randomize": () => {
+				this.randomize();
+			}
+		}, "Randomize");
 	}
 
 	clearGUIParams () {
@@ -112,6 +121,17 @@ class controller {
 		this.gui.remove( this.controllers.topX );
 		this.gui.remove( this.controllers.list );
 		this.gui.remove( this.controllers.invertText );
+	}
+
+	randomBetween (min, max) {
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+
+	randomize () {
+		this.params.topX = this.randomBetween(0, this.imageWidth);
+		this.params.topY = this.randomBetween(0, this.imageHeight);
+		this.gui.__controllers[0].setValue(this.params.topX);
+		this.gui.__controllers[1].setValue(this.params.topY);
 	}
 
 	addKeyboardEvents () {
@@ -136,7 +156,11 @@ class controller {
 					e.preventDefault();
 					this.params.topY++;
 					this.gui.__controllers[1].setValue(this.params.topY);
-				break;				
+				break;
+				case 82:
+					e.preventDefault();
+					this.randomize();
+				break;
 			}
 		});
 	}
