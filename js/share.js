@@ -7,6 +7,12 @@
  * 312|123|7,7|false|lights
  */
 export function hashDetect () {
+
+	// Test if URL is really a shared URL
+	if( location.href.indexOf('?s=') == -1 ) {
+		return;
+	}
+
 	let hash = location.search.replace(/^.*?\=/, '').split('&')[0];
 
 	if( hash === '' ) {
