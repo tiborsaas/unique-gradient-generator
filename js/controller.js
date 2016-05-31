@@ -121,6 +121,7 @@ class controller {
 		this.gui.remove( this.controllers.topX );
 		this.gui.remove( this.controllers.list );
 		this.gui.remove( this.controllers.invertText );
+		this.gui.remove( this.controllers.randomizeButton );
 	}
 
 	randomBetween (min, max) {
