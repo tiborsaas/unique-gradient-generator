@@ -82,7 +82,7 @@ class ui {
 
 		this.$twitterShareButton.on('click', ( e ) => {
 			this.events.trigger('sharing');
-			this.$twitterShareButton.attr('href', 'https://twitter.com/intent/tweet?text=I just create a new background gradient: ' + this.shareURL );
+			this.$twitterShareButton.attr('href', 'https://twitter.com/intent/tweet?text=I just created a new background gradient: ' + this.shareURL );
 		});
 
 		this.events.on('share-url', ( url ) => {
